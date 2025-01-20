@@ -1,8 +1,8 @@
 from pydantic  import BaseModel, ConfigDict
 
 class WorkoutBase(BaseModel):
-    duration: int
     type: str
+    duration: int
     
 class WorkoutCreate(WorkoutBase):
     pass

@@ -15,13 +15,13 @@ router = APIRouter(prefix="/workouts", tags=["Workouts 🏃"])
 
 
 @router.get("/", response_model=list[Workout],)
-async def get_workouts(skip: int = 0, limit: int = 100):
+async def get_workouts(user: Annotated[User, Depends(get_current_user)], skip: int = 0, limit: int = 100):
     workouts = await WorkoutDAO.find_all()
     return workouts[skip : skip + limit]
 
 
 @router.get("/{workout_id}/", response_model=Workout)
-async def get_workout_by_id(workout_id: int):
+async def get_workout_by_id(workout_id: int, user: Annotated[User, Depends(get_current_user)]):
     workout = await WorkoutDAO.find_id(workout_id)
     if not workout:
         raise WorkoutByIdNotFoundException
@@ -29,7 +29,7 @@ async def get_workout_by_id(workout_id: int):
 
 @router.post("/", response_model=Workout)
 async def create_workout(workout: Annotated[WorkoutCreate, Depends()], user: Annotated[User, Depends(get_current_user)]):
-    created = await WorkoutDAO.add(**workout.model_dump())
+    created = await WorkoutDAO.add(user_id =user.id, **workout.model_dump())
     if created is None:
         raise WorkoutNotCreatedException
     return created

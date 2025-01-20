@@ -3,7 +3,7 @@ from app.dao.base import BaseDAO
 from app.database import async_session
 
 
-class BookDAO(BaseDAO):
+class WorkoutDAO(BaseDAO):
     model = Workout
     
     @classmethod

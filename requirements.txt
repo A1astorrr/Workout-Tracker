@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+pydantic[email]
+pydantic-settings
+alembic
+psycopg2-binary
+asyncpg
+pyjwt
+passlib[bcrypt]
+jinja2
+sqladmin
+pytest
+pytest-asyncio
+httpx
+isort

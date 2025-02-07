@@ -17,9 +17,9 @@ class BaseDAO(Generic[T]):
             return result.scalar_one_or_none()
 
     @classmethod
-    async def find_all(cls, **filter_by) -> Sequence[T]:
+    async def find_all(cls, user_id: int, **filter_by) -> Sequence[T]:
         async with async_session() as session:
-            query = select(cls.model).filter_by(**filter_by)
+            query = select(cls.model).filter_by(user_id=user_id,**filter_by)
             result = await session.execute(query)
             return result.scalars().all()
 

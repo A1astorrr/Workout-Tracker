@@ -6,7 +6,7 @@ class WorkoutBase(BaseModel):
     
 class WorkoutCreate(WorkoutBase):
     pass
-
+    
 class WorkoutUpdate(WorkoutBase):
     pass
 

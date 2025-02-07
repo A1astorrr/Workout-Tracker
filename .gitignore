@@ -9,3 +9,7 @@ __pycache__/
 
 #alembic stuff
 .env
+
+node_modules
+
+t.py

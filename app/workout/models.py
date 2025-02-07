@@ -17,6 +17,7 @@ class Workout(Base):
     duration: Mapped[int]
     date_created: Mapped[created_at]
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"))
+    completed: Mapped[bool] = mapped_column(default=False)
     user = relationship(User, back_populates="workouts")
 
     @property

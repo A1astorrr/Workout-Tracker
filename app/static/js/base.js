@@ -2,7 +2,8 @@ function addStyles() {
     const style = document.createElement('style');
     style.textContent = `
         .workout-card {
-            background: #fff;
+            background: #155864;
+
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 16px;
@@ -16,10 +17,11 @@ function addStyles() {
             margin-top: 8px;
         }
         .status.completed {
-            color: green;
+            color: #5bff0f;
+
         }
         .status.not-completed {
-            color: red;
+            color: #ff0a0a;
         }
         .action-buttons button {
             padding: 8px 12px;
@@ -61,14 +63,14 @@ const updateAuthState=()=>{
           guest=document.getElementById('guestContent')
     if(isLoggedIn){
         const u=localStorage.getItem('username')
-        auth.innerHTML=`<span class="text-gray-700">Привет, ${u}</span>
+        auth.innerHTML=`<span class="text-gray-700 dark:text-white">Привет, ${u}</span>
             <button onclick="logout()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Выйти</button>`
         user.classList.remove('hidden')
         guest.classList.add('hidden')
         fetchWorkouts()
     }else{
-        auth.innerHTML=`<a href="/pages/login" class="text-gray-600 hover:text-indigo-600">Вход</a>
-            <a href="/pages/register" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Регистрация</a>`
+        auth.innerHTML=`<a href="/pages/login" class="text-black dark:text-white hover:text-[#169eb6]">Вход</a>
+            <a href="/pages/register" class="bg-[#0a7e92] text-white px-4 py-2 rounded hover:bg-[#169eb6]">Регистрация</a>`
         user.classList.add('hidden')
         guest.classList.remove('hidden')
     }
@@ -105,10 +107,10 @@ const displayWorkout=w=>{
     div.className='workout-card'
     div.dataset.id=w.id
     div.innerHTML=`
-        <h3 class="text-lg font-semibold">${w.type}</h3>
-        <p>Продолжительность: ${w.duration} мин</p>
+        <h3 class="font-semibold text-2xl text-white">${w.type}</h3>
+        <p class="font-semibold text-sm text-white">Продолжительность: ${w.duration} мин</p>
         <p class="status ${w.completed?'completed':'not-completed'}">${w.completed?'Выполнено':'Не выполнено'}</p>
-        <div class="action-buttons mt-4 flex justify-center gap-2">
+        <div class="action-buttons mt-4 flex justify-center gap-2 ">
             <button class="complete-btn text-white">Завершить</button>
             <button class="edit-btn text-white">Редактировать</button>
             <button class="delete-btn text-white">Удалить</button>

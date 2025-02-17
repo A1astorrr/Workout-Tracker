@@ -12,7 +12,6 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
             body: JSON.stringify({ username, email, password })
         });
         if (response.ok) {
-            alert('Регистрация успешна!');
             window.location.href = '/pages/login';
         } else {
             const errorData = await response.json();

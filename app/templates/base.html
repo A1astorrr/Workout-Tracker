@@ -2,59 +2,53 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FitTracker - Главная</title>
     <link rel="stylesheet" href="{{ url_for('static', path='css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-
 </head>
 <body class="bg-white dark:bg-[#1E1E1E]">
     <header class="bg-white dark:bg-[#1E1E1E] shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center relative">
             <a href="/pages" class="flex items-center">
-                <span class="text-2xl font-bold text-[#3eb7cc] dark:text-[#78ebff] ">FitTracker</span>
+                <span class="text-2xl font-bold text-[#3eb7cc] dark:text-[#78ebff] font-Mystery">FitTracker</span>
             </a>
+            <div class="md:hidden">
+                <button id="burgerButton" class="text-gray-700 dark:text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
             <div id="authButtons" class="hidden md:flex items-center space-x-4"></div>
         </div>
+        <div id="mobileMenu" class="md:hidden bg-white dark:bg-[#1E1E1E] shadow-md absolute top-full left-0 right-0 flex flex-col items-center justify-center gap-4 p-6">
+            <!-- Mobile menu content will be injected here by JavaScript -->
+        </div>
     </header>
-
-    <main class="max-w-7xl mx-auto px-4 py-8">
+    <main class="max-w-7xl mx-auto px-4 py-8 font-Caveat">
         <section id="guestContent" class="text-center hidden md:block">
-            <h1 class="text-black dark:text-white text-4xl font-bold mb-6">Отслеживайте свои тренировки</h1>
-            <p class="text-black dark:text-white mb-7">Начните свой фитнес-путь вместе с нами</p>
+            <h1 class="text-slate-800 dark:text-white text-6xl font-bold mb-6">Отслеживайте свои тренировки</h1>
+            <p class="text-slate-800 dark:text-white mb-7 text-3xl">Начните свой фитнес-путь вместе с нами</p>
         </section>
-
         <section id="userContent" class="hidden">
-            <article class="bg-[#056d80] dark:bg-[#4bb7ca] p-6 rounded-lg shadow-md mb-8  text-black">
-                <h2 class="text-2xl font-semibold mb-4 text-white">Добавить тренировку</h2>
+            <article class="bg-[#87CEFA] p-6 rounded-lg shadow-md mb-8 text-black">
+                <h2 class="text-2xl font-semibold mb-4 text-slate-800">Добавить тренировку</h2>
                 <form id="workoutForm" class="space-y-4">
-                    <!-- Поле для типа тренировки -->
                     <div class="relative">
                         <i class="fas fa-dumbbell absolute left-3 top-1/2 transform -translate-y-1/2 text-black"></i>
-                        <input type="text" id="type" placeholder="Тип тренировки" 
-                               class="w-full p-3 pl-10 border border-gray-300  rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a7e92] " required>
+                        <input type="text" id="type" placeholder="Тип тренировки" class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a77b1] font-title" required>
                     </div>
-                    <!-- Поле для продолжительности -->
                     <div class="relative">
                         <i class="fas fa-clock absolute left-3 top-1/2 transform -translate-y-1/2 text-black"></i>
-                        <input type="number" id="duration" placeholder="Продолжительность (мин)" 
-                               class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2  focus:ring-[#0a7e92]" required>
+                        <input type="number" min="1" id="duration" placeholder="Продолжительность (мин)" class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a77b1] font-title" required>
                     </div>
-                    <!-- Кнопка отправки формы -->
-                    <button type="submit" 
-                            class="w-full bg-[#12adc9] dark:bg-[#0a7e92] text-white text-xl font-bold py-3 rounded-lg hover:bg-[#169eb6] transition duration-300">
+                    <button type="submit" class="w-full bg-[#339fe2] text-white text-xl font-bold py-3 rounded-lg hover:bg-[#1a77b1] transition duration-300">
                         Добавить тренировку
                     </button>
                 </form>
             </article>
-            <!-- Список тренировок -->
             <article id="workoutsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></article>
         </section>
     </main>
-
-    
-    <script src="{{ url_for('static', path='js/base.js') }}"></script>
-
+    <script src="{{ url_for('static', path='js/base.js')}}" defer></script>
 </body>
 </html>
